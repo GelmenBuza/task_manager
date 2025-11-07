@@ -26,10 +26,17 @@ export default function TaskManager () {
         setTasks(prev => prev.map(task => task.id === id ? {...task, complited: !task.complited} : task))
     }
 
+    const updateTag = (id, newTags) => {
+        newTags = newTags.split(',').map(t => t.trim()).filter(t => t);
+        setTasks(prev => prev.map(task => 
+            task.id === id ? { ...task, tags: newTags } : task
+        ));
+    }
+
     return <div className={style.section}>
         <h2 className={style.section__title}>Task Manager</h2>
         <TaskAddFrom onAdd={addTask}></TaskAddFrom>
-        <List list={tasks} onRemove={removeTask} onUpdate={updateTask} onMark={markTask}></List>
+        <List list={tasks} onRemove={removeTask} onUpdate={updateTask} onMark={markTask} onUpdateTag={updateTag}></List>
     </div>
 
 }  

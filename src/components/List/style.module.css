@@ -1,6 +1,5 @@
 .list {
     box-sizing: border-box;
-    padding: 20px;
     display: flex;
     max-width: 1000px;
     flex-wrap: wrap;
@@ -9,7 +8,6 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-
 }
 
 .list_item {
@@ -22,6 +20,7 @@
     height: 300px;
     background-color: #ffffff80;
     border-radius: 20px;
+    padding: 10px;
 }
 
 .list_item_marked {
@@ -34,6 +33,7 @@
     height: 300px;
     background-color: #7fffd497;
     border-radius: 20px;
+    padding: 10px;
 }
 
 .edit_desc {
@@ -91,9 +91,10 @@
 
 .tags {
     display: grid;
+    box-sizing: border-box;
+    padding: 10px 0;
     grid-template-columns: 60px 1fr;
     grid-template-rows: 1fr 50px;
-
     z-index: 1;
     background-color: #c6c6c6;
     color: #595959;
@@ -120,6 +121,10 @@
     max-height: 200px;
 }
 
+.tags_cont.tags_cont::-webkit-scrollbar {
+    display: none;
+}
+
 .add_tag_btn {
     align-self: center;
     justify-self: center;
@@ -134,4 +139,11 @@
     display: inline-flex;
     max-width: 100%;
     word-break: break-word;
+    height: fit-content;
+}
+
+.tags_edit_input {
+    z-index: 2;
+    grid-column: 1/3;
+    grid-row: 1/2;
 }
