@@ -1,0 +1,25 @@
+
+.form {
+    padding: 30px;
+    background-color: gray;
+    border-radius: 20px;
+    align-items: center;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form__title {
+    font-weight: bold;
+}
+
+.form__input {
+    padding: 10px 20px;
+    text-decoration: none;
+    border: none;
+    border-radius: 10px;
+    background-color: white;
+    color: black;
+
+}

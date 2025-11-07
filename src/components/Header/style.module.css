@@ -1,0 +1,21 @@
+.header {
+    width: 100%;
+    ul {
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        justify-content: space-between;
+    }
+    li {
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+    }
+    li:hover {
+        color: blue;
+        transform: scale(1.2);
+    }
+    li::marker {
+        content: "";
+    }
+}
