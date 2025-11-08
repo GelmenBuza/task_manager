@@ -36,6 +36,15 @@ const Item = ({ item, onRemove, onUpdate, onMark, onUpdateTag}) => {
     }
 
 
+    const renderDate = () => {
+        return (
+            <div className={style.date_cont}>
+                <span>Задача до: </span>
+                <span>{item.burnDate}</span>
+            </div>
+        )
+    }
+
     const renderData = () => {
 
     const modeSwitchingTag = () => {
@@ -58,6 +67,7 @@ const Item = ({ item, onRemove, onUpdate, onMark, onUpdateTag}) => {
                     </button>
             </div>
             <span className={style.item_text}>{item.text}</span>
+            {item.burnDate ? renderDate() : ''}
             <button className={style.list_delete} onClick={() => onRemove(item.id)}>Удалить</button>
         </>
     }

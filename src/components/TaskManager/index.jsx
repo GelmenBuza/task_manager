@@ -7,9 +7,9 @@ import style from './style.module.css';
 export default function TaskManager () {
     const [tasks, setTasks] = useState([])
 
-    const addTask = (text, tags) => {
+    const addTask = (text, tags, date) => {
         const newId = tasks.length + 1;
-        setTasks(prev => [...prev, { id: newId, text, tags, complited: false}]);
+        setTasks(prev => [...prev, { id: newId, text, tags, burnDate: date, complited: false}]);
     };
 
     const removeTask = (id) => {

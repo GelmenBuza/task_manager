@@ -4,14 +4,15 @@ import style from './style.module.css';
 export default function TaskAddFrom({ onAdd }) {
     const [text, setText] = useState('');
     const [tag, setTag] = useState('');
+    const [dateBurn, setDateBurn] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!text.trim()) return
 
         const tags = tag.split(',').map(t => t.trim()).filter(t => t)
-
-        onAdd(text.trim(), tags);
+        const date = new Date(dateBurn);
+        onAdd(text.trim(), tags, date);
         setText('');
         setTag('');
     };
@@ -19,23 +20,42 @@ export default function TaskAddFrom({ onAdd }) {
     return (
         <form className={style.form} onSubmit={handleSubmit}>
             <h2 className={style.form__title}>Добавь задачу</h2>
-            <input
-                type="text"
-                className={style.form__input}
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-                placeholder="Новая задача..."
-            />
-            <input
-                type="text"
-                className={style.form__input}
-                value={tag}
-                onChange={(e) => setTag(e.target.value)}
-                placeholder="Добавь тэг..."
-            />
-            <button type="submit" className={style.form__button}>
-                Добавить
-            </button>
+            <div className={style.form_cont}>
+                <label htmlFor='taskName'>
+                    <input
+                        type="text"
+                        className={style.form__input}
+                        name='taskName'
+                        value={text}
+                        onChange={(e) => setText(e.target.value)}
+                        placeholder="Новая задача..."
+                    />
+                </label>
+                <label htmlFor="taskTag">
+                    <input
+                        type="text"
+                        className={style.form__input}
+                        name='taskTag'
+                        value={tag}
+                        onChange={(e) => setTag(e.target.value)}
+                        placeholder="Добавь тэг..."
+                    />
+                </label>
+                <label htmlFor="taskBurnDate">
+                    {/* <span>Добавьте дату сгорания задачи: </span> */}
+                    <input
+                        type="date"
+                        className={style.form__input}
+                        name='taskBurnDate'
+                        value={dateBurn}
+                        onChange={(e) => setDateBurn(e.target.value)}
+                    />
+                </label>
+                <button type="submit" className={style.form__button}>
+                    Добавить
+                </button>
+            </div>
+
         </form>
     );
 }
