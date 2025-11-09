@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import style from './style.module.css'
 
-const Item = ({ item, onRemove, onUpdate, onMark, onUpdateTag}) => {
+export const Item = ({ item, onRemove, onUpdate, onMark, onUpdateTag}) => {
     const [isEditing, setIsEditing] = useState(false)
     const [isEditingTag, setIsEditingTag] = useState(false)
     const [editText, setEditText] = useState(item.text)
@@ -40,7 +40,7 @@ const Item = ({ item, onRemove, onUpdate, onMark, onUpdateTag}) => {
         return (
             <div className={style.date_cont}>
                 <span>Задача до: </span>
-                <span>{item.burnDate}</span>
+                <span>{new Date(item.burnDate).toLocaleDateString('ru-RU')}</span>
             </div>
         )
     }
@@ -67,7 +67,7 @@ const Item = ({ item, onRemove, onUpdate, onMark, onUpdateTag}) => {
                     </button>
             </div>
             <span className={style.item_text}>{item.text}</span>
-            {item.burnDate ? renderDate() : ''}
+            {item.burnDate ? renderDate() : <></>}
             <button className={style.list_delete} onClick={() => onRemove(item.id)}>Удалить</button>
         </>
     }
@@ -94,8 +94,22 @@ const Item = ({ item, onRemove, onUpdate, onMark, onUpdateTag}) => {
         setIsEditing(!isEditing)
     }
 
+    const taskStatus = () => {
+        const today = new Date().toISOString().split('T')[0];
+        if (item.complited) {
+            return style.list_item_marked;
+        }
+        if (item.burnDate) {
+            if (item.burnDate && item.burnDate < today) {
+                return style.list_item_burned;
+            }
+        }
+
+        return style.list_item;
+    }
+
     return(
-        <li className={item.complited ? style.list_item_marked : style.list_item} key={item.id}>
+        <li className={taskStatus()} key={item.id}>
             {isEditing ? renderEditor() : renderData()}
             <button className={style.list_edit} onClick={modeSwitching}>
                 {isEditing ? 'Save' : 'Edit'}
