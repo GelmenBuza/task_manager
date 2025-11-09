@@ -1,6 +1,8 @@
 .list {
     box-sizing: border-box;
     display: flex;
+    align-items: center;
+    justify-content: center;
     max-width: 1000px;
     flex-wrap: wrap;
     flex-direction: row;

@@ -47,14 +47,14 @@ export const Item = ({ item, onRemove, onUpdate, onMark, onUpdateTag}) => {
 
     const renderData = () => {
 
-    const modeSwitchingTag = () => {
-        if (isEditingTag) {
-            onUpdateTag(item.id, editTag)
-        } else {
-            setEditTag(item.tags.join(', '))
+        const modeSwitchingTag = () => {
+            if (isEditingTag) {
+                onUpdateTag(item.id, editTag)
+            } else {
+                setEditTag(item.tags.join(', '))
+            }
+            setIsEditingTag(!isEditingTag)
         }
-        setIsEditingTag(!isEditingTag)
-    }
 
 
         return <>
@@ -100,7 +100,7 @@ export const Item = ({ item, onRemove, onUpdate, onMark, onUpdateTag}) => {
             return style.list_item_marked;
         }
         if (item.burnDate) {
-            if (item.burnDate && item.burnDate < today) {
+            if (item.burnDate && item.burnDate.toISOString().split('T')[0] < today) {
                 return style.list_item_burned;
             }
         }

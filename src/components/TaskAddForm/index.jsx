@@ -15,7 +15,7 @@ export default function TaskAddFrom({ onAdd }) {
         if (dateBurn) {
             date = new Date(dateBurn);
         }
-        onAdd(text.trim(), tags, date.toISOString().split('T')[0]);
+        onAdd(text.trim(), tags, date);
         setText('');
         setTag('');
         setDateBurn('');

@@ -24,13 +24,3 @@
         gap: 10px;
     }
 }
-
-.form__input {
-    padding: 10px 20px;
-    text-decoration: none;
-    border: none;
-    border-radius: 10px;
-    background-color: white;
-    color: black;
-
-}
