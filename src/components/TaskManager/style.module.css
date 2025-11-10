@@ -15,7 +15,7 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    background-color: gray;
+    background-color: var(--bg-components);
     width: 80%;
     padding: 10px 30px;
     border-radius: 20px;
